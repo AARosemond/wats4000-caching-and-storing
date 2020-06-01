@@ -56,7 +56,7 @@ export default {
       showLoading: false,
       messages: [],
       favorites: []
-    };
+    }
   },
   created() {
     if (this.$ls.get("favoriteCities")) {

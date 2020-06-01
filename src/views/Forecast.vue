@@ -46,7 +46,8 @@ export default {
       weatherData: null,
       messages: [],
       query: "",
-      showLoading: false
+      showLoading: false,
+      messages: []
     };
   },
   created() {
