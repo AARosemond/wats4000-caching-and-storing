@@ -47,7 +47,7 @@ export default {
     this.showLoading = true;
     let cacheLabel = "currentWeather_" + this.$route.params.cityId;
 
-    let cacheExpiry = 15 * 60 * 1000;
+    //let cacheExpiry = 15 * 60 * 1000;
 
     if (this.$ls.get(cacheLabel)) {
       console.log("Cached value detected.");
