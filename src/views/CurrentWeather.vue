@@ -2,7 +2,9 @@
   <div>
     <h2>
       Current Weather
-      <span v-if="weatherData">for {{ weatherData.name }}, {{weatherData.sys.country }}</span>
+      <span
+        v-if="weatherData"
+      >for {{ weatherData.name }}, {{weatherData.sys.country }}</span>
     </h2>
     <message-container v-bind:messages="messages"></message-container>
     <p>
@@ -47,7 +49,7 @@ export default {
     this.showLoading = true;
     let cacheLabel = "currentWeather_" + this.$route.params.cityId;
 
-    //let cacheExpiry = 15 * 60 * 1000;
+    let cacheExpiry = 15 * 60 * 1000;
 
     if (this.$ls.get(cacheLabel)) {
       console.log("Cached value detected.");
@@ -62,8 +64,10 @@ export default {
         }
       })
         .then(response => {
-          this.showLoading = false;
+          this.$ls.set(cacheLabel, response.data, cacheExpiry);
+          console.log("New query has been cached as: " + cacheLabel);
           this.weatherData = response.data;
+          this.showLoading = false;
         })
         .catch(error => {
           this.showLoading = false;
